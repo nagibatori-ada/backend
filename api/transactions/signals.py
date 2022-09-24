@@ -9,6 +9,6 @@ from api.transactions.models import Transaction
 def post_save_transaction(sender, instance, created, **kwargs):
     if created:
         send_transaction_and_wait_for_ending.delay(
-            transaction_id=instance.transaction_id,
+            model_id=instance.id,
             gas_used=22222228,
         )
