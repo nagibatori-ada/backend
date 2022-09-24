@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from api.assets.models import Asset
 from api.assets.serializers import AssetDetailSerializer, AssetListSerializer
 from api.pairs.models import Pair
 
@@ -20,3 +21,9 @@ class PairDetailSerializer(serializers.ModelSerializer):
 
     asset_to = AssetDetailSerializer()
     asset_from = AssetDetailSerializer()
+
+
+class PairCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pair
+        fields = '__all__'

@@ -56,8 +56,7 @@ COPY --chown=app:app . $APP_HOME
 COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
 ENV PATH="${PATH}:/home/app/.local/bin/"
-RUN --mount=type=cache,target=/root/.cache pip install --upgrade pip
 #RUN pip install --no-cache /wheels/*
-RUN pip install --upgrade pip
+RUN --mount=type=cache,target=/root/.cache pip install --upgrade pip
 RUN --mount=type=cache,target=/root/.cache pip install /wheels/*
 RUN --mount=type=cache,target=/root/.cache pip install gunicorn

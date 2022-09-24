@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from api.assets.models import Asset
 from api.assets.serializers import AssetListSerializer, AssetDetailSerializer
 from api.transactions.models import Transaction
 
