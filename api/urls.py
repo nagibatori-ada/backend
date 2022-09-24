@@ -1,9 +1,17 @@
 from django.urls import path, include
 from rest_framework_swagger.views import get_swagger_view
 
+from django.conf import settings
+
 
 urlpatterns = [
-    path('docs/', get_swagger_view(title='NAGIBATORI ADA API')),
+    path(
+        'docs/',
+        get_swagger_view(
+            title='NAGIBATORI ADA API',
+            url='/',
+        ),
+    ),
     path('transaction/', include('api.transactions.urls')),
     path('trading/pairs/', include('api.pairs.urls')),
     path('trading/assets/', include('api.assets.urls')),
