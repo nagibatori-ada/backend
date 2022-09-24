@@ -6,4 +6,8 @@ from api.pairs.models import Pair
 
 @admin.register(Pair)
 class PairAdmin(admin.ModelAdmin):
-    list_display = ('description', 'asset_from', 'asset_to', )
+    list_display = (
+        'description',
+        'asset_from',
+        'asset_to',
+    )

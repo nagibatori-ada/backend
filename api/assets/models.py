@@ -9,16 +9,13 @@ class Asset(models.Model):
         verbose_name = 'Токен'
         verbose_name_plural = 'Токены'
 
-    name = models.TextField(
-        verbose_name='Название'
-    )
+    name = models.CharField(verbose_name='Название', max_length=100)
     ticker = models.CharField(verbose_name='Тикер', max_length=10)
     description = models.TextField(
-        verbose_name='Описание токена',
-        null=True,
-        blank=True
+        verbose_name='Описание токена', null=True, blank=True
     )
-    # address = models.CharField(max_length=255, verbose_name='Адрес торгового контракта')
+    quantity = models.PositiveIntegerField()  # FIXME
+    address = models.CharField(max_length=255, verbose_name='Адрес торгового контракта')
 
     def __str__(self) -> str:
         return str(self.ticker)
@@ -29,13 +26,8 @@ class Asset(models.Model):
 
         last24h = datetime.now() - timedelta(hours=24)
         queryset = Transaction.objects.filter(
-            asset_from=self,
-            timestamp__gte=last24h
-        ) | Transaction.objects.filter(
-            asset_to=self,
-            timestamp__gte=last24h
-        )
+            asset_from=self, timestamp__gte=last24h
+        ) | Transaction.objects.filter(asset_to=self, timestamp__gte=last24h)
         if not queryset.exists():
             return 0
-        return queryset.aggregate(Sum('coin_amount'))['coin_amount__sum']
-
+        return queryset.aggregate(Sum('quantity'))['quantity__sum']

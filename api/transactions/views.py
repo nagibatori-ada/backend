@@ -1,7 +1,10 @@
 from rest_framework import generics
 
 from api.transactions.models import Transaction
-from api.transactions.serializers import TransactionListSerializer, TransactionDetailSerializer
+from api.transactions.serializers import (
+    TransactionListSerializer,
+    TransactionDetailSerializer,
+)
 
 
 class TransactionListView(generics.ListCreateAPIView):

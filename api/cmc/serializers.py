@@ -1,13 +1,17 @@
 from rest_framework import serializers
 
 
-class AssetDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Asset
-        fields = '__all__'
+class CoinMarketCapSerializer(serializers.Serializer):
 
-    volume_24h = serializers.SerializerMethodField()
+    # def update(self, instance, validated_data):
+    #     pass
+    #
+    # def create(self, validated_data):
+    #     pass
 
-    @staticmethod
-    def get_volume_24h(obj):
-        return obj.volume_24h
+    ticker = serializers.CharField(max_length=10)
+    name = serializers.CharField(max_length=100)
+    volume = serializers.DecimalField(max_digits=100, decimal_places=0)
+    volume_24h = serializers.DecimalField(max_digits=100, decimal_places=0)
+    stakeholders = serializers.IntegerField()
+    price = serializers.DecimalField(max_digits=100, decimal_places=0)

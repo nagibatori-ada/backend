@@ -9,6 +9,6 @@ class AssetListView(generics.ListCreateAPIView):
     serializer_class = AssetListSerializer
 
 
-class AssetDetailView(generics.ListCreateAPIView):
+class AssetDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Asset.objects.all()
     serializer_class = AssetDetailSerializer

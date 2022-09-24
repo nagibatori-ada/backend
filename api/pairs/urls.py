@@ -4,6 +4,6 @@ from api.pairs.views import PairListView, PairDetailView
 
 
 urlpatterns = [
-    path('list/', PairListView.as_view()),
-    path('detail/<int:pk>/', PairDetailView.as_view()),
+    path('all/', PairListView.as_view()),
+    path('<int:pk>/', PairDetailView.as_view()),
 ]

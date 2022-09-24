@@ -6,4 +6,4 @@ from api.transactions.models import Transaction
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
-    list_display = ('status', 'asset_from', 'asset_to', 'coin_amount', 'timestamp')
+    list_display = ('status', 'asset_from', 'asset_to', 'timestamp')

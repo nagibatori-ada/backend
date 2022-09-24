@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_swagger',
-
     'api.apps.ApiConfig',
     'api.cmc.apps.CmcConfig',
     'api.assets.apps.AssetsConfig',
@@ -47,9 +46,7 @@ INSTALLED_APPS = [
     'api.transactions.apps.TransactionsConfig',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
-}
+REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -66,8 +63,7 @@ ROOT_URLCONF = 'HellaSwap.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,7 +74,7 @@ TEMPLATES = [
             ],
             'libraries': {
                 'staticfiles': 'django.templatetags.static',
-            }
+            },
         },
     },
 ]

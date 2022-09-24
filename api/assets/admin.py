@@ -6,4 +6,7 @@ from api.assets.models import Asset
 
 @admin.register(Asset)
 class AssetAdmin(admin.ModelAdmin):
-    list_display = ('name', 'ticker', )
+    list_display = (
+        'name',
+        'ticker',
+    )
