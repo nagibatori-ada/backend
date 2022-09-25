@@ -11,22 +11,23 @@ class Pair(models.Model):
 
     description = models.TextField(verbose_name='Описание пары', null=True, blank=True)
 
-    asset_from = models.ForeignKey(
-        to=Asset, related_name='pairs_asset_from', on_delete=models.CASCADE
+    asset_a = models.ForeignKey(
+        to=Asset, related_name='pairs_asset_a', on_delete=models.CASCADE
     )
-    asset_to = models.ForeignKey(
-        to=Asset, related_name='pairs_asset_to', on_delete=models.CASCADE
+    asset_b = models.ForeignKey(
+        to=Asset, related_name='pairs_asset_b', on_delete=models.CASCADE
     )
 
-    ratio = models.DecimalField(
-        max_digits=15, decimal_places=10
-    )  # todo: переделать в логику
+    weight_a = models.DecimalField(max_digits=15, decimal_places=10)
+    weight_b = models.DecimalField(max_digits=15, decimal_places=10)
+
+    contract_id = models.CharField(max_length=255, verbose_name='Адрес контракта')
 
     def __str__(self) -> str:
-        return f'{self.asset_from} - {self.asset_to}'
+        return f'{self.asset_a} - {self.asset_b}'
 
     def clean(self):
-        if self.asset_to == self.asset_from:
+        if self.asset_a == self.asset_b:
             raise ValidationError(
-                'AssetsEqualException: asset_from and asset_to should be different.'
+                'AssetsEqualException: asset_a and asset_b should be different.'
             )

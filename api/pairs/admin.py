@@ -8,6 +8,6 @@ from api.pairs.models import Pair
 class PairAdmin(admin.ModelAdmin):
     list_display = (
         'description',
-        'asset_from',
-        'asset_to',
+        'asset_a',
+        'asset_b',
     )

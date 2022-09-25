@@ -22,26 +22,32 @@ class Transaction(models.Model):
         default=StatusEnum.pending,
     )
     timestamp = models.DateTimeField(default=timezone.now, verbose_name='Дата')
-    gas_used = models.PositiveIntegerField(
-        verbose_name='Использованный газ', null=True, blank=True
+    fee_used = models.PositiveIntegerField(
+        verbose_name='Комиссия', null=True, blank=True
     )
-    amount_from = models.DecimalField(
+    input_amount = models.DecimalField(
         max_digits=100, decimal_places=0, verbose_name='Объем исходного актива'
     )
-    amount_to = models.DecimalField(
+    output_amount = models.DecimalField(
         max_digits=100, decimal_places=0, verbose_name='Объем результирующего актива'
     )
-    quantity = models.PositiveIntegerField()  # FIXME
 
     asset_from = models.ForeignKey(
-        to=Asset, related_name='transactions_asset_from', on_delete=models.CASCADE
+        to=Asset,
+        related_name='transactions_asset_from',
+        on_delete=models.CASCADE,  # оставить
     )
     asset_to = models.ForeignKey(
-        to=Asset, related_name='transactions_asset_to', on_delete=models.CASCADE
+        to=Asset,
+        related_name='transactions_asset_to',
+        on_delete=models.CASCADE,  # оставить
+    )
+    target_contract_id = models.CharField(
+        max_length=255, verbose_name='Адрес контракта'
     )
     transaction_id = models.CharField(max_length=255, verbose_name='Айди транзакции')
 
-    def update_status(self, status: StatusEnum, gas_used: int) -> None:
+    def update_status(self, status: StatusEnum, fee_used: int) -> None:
         self.status = status
-        self.gas_used = gas_used
+        self.fee_used = fee_used
         self.save()

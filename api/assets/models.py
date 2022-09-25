@@ -14,8 +14,7 @@ class Asset(models.Model):
     description = models.TextField(
         verbose_name='Описание токена', null=True, blank=True
     )
-    quantity = models.PositiveIntegerField()  # FIXME
-    address = models.CharField(max_length=255, verbose_name='Адрес торгового контракта')
+    asset_id = models.CharField(verbose_name='Айди токена', max_length=255)
 
     def __str__(self) -> str:
         return str(self.ticker)

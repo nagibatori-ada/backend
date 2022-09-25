@@ -1,6 +1,5 @@
 from rest_framework import serializers
 
-from api.assets.models import Asset
 from api.assets.serializers import AssetListSerializer, AssetDetailSerializer
 from api.transactions.models import Transaction
 
@@ -8,7 +7,14 @@ from api.transactions.models import Transaction
 class TransactionListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
-        fields = ['id', 'status', 'quantity', 'gas_used', 'asset_from', 'asset_to']
+        fields = [
+            'id',
+            'status',
+            'fee_used',
+            'asset_from',
+            'asset_to',
+            'target_contract_id',
+        ]
 
     asset_to = AssetListSerializer()
     asset_from = AssetListSerializer()

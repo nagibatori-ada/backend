@@ -8,10 +8,10 @@ from api.pairs.models import Pair
 class PairListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pair
-        fields = ['id', 'asset_to', 'asset_from', 'ratio']
+        fields = ['id', 'asset_a', 'asset_b', 'weight_a', 'weight_b', 'contract_id']
 
-    asset_to = AssetListSerializer()
-    asset_from = AssetListSerializer()
+    asset_a = AssetListSerializer()
+    asset_b = AssetListSerializer()
 
 
 class PairDetailSerializer(serializers.ModelSerializer):
@@ -19,8 +19,8 @@ class PairDetailSerializer(serializers.ModelSerializer):
         model = Pair
         fields = '__all__'
 
-    asset_to = AssetDetailSerializer()
-    asset_from = AssetDetailSerializer()
+    asset_a = AssetDetailSerializer()
+    asset_b = AssetDetailSerializer()
 
 
 class PairCreateSerializer(serializers.ModelSerializer):

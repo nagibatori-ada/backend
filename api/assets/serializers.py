@@ -6,7 +6,7 @@ from api.assets.models import Asset
 class AssetListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Asset
-        fields = ['id', 'name', 'ticker', 'volume_24h']
+        fields = ['id', 'name', 'ticker', 'volume_24h', 'asset_id']
 
 
 class AssetDetailSerializer(serializers.ModelSerializer):

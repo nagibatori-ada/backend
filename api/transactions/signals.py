@@ -10,5 +10,5 @@ def post_save_transaction(sender, instance, created, **kwargs):
     if created:
         send_transaction_and_wait_for_ending.delay(
             model_id=instance.id,
-            gas_used=22222228,
+            fee_used=22222228,
         )
